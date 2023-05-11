@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title> My Todo </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        table {
+			border-collapse: collapse;
+			width: 100%;
+			text-align: left;
+		}
+		th, td {
+			padding: 8px;
+            color: #ddd;
+			border: 1px solid #ddd;
+		}
+		th {
+			background-color: #7b6262;
+            /* color: #ccc; */
+		}
+		input[type=text] {
+			padding: 6px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+		}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to bottom right, rgb(58, 188, 22) 0%, rgb(185, 55, 55) 50%, rgb(42, 70, 163) 0%, rgb(185, 30, 30) 90%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .navber_fix {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .table-1 {
+            display: flex;
+            /* width: 100%; */
+            text-align: center;
+            justify-content: center;
+            margin: 30px;
+            color: aliceblue;
+        }
+#myTable{
+border: 1px solid black;
+}
+        .mark-pic {
+            margin: 30px 0;
+            height: 30vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .mark-pic .marksheet {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            height: 30vh;
+            width: 70vw;
+            color: rgb(227, 229, 231);
+            background: linear-gradient(to right, rgb(192, 28, 28) 0%, rgb(32, 64, 176) 50%, rgb(34, 198, 26) 50%, rgb(200, 34, 22) 100%);
+        }
+.imp{
+    width: 100%;
+    height: 20vh;
+    display: flex;
+    justify-content: left;
+    /* background-color: aliceblue; */
+}
+.inputbox{
+    position: relative;
+    width: 250px;
+    margin: 50px 0 30px;
+}
+ .inputbox input{
+    width: 25vw;
+    padding: 10px;
+    border:1px solid rgba(255, 255, 255, 0.468);
+    background:rgb(34, 40, 133);
+    border-radius: 5px;
+    outline: none;
+    color: aliceblue;
+    font-size: 1em;
+}
+    </style>
+</head>
+
+<body>
+    <div class="mark-pic">
+        <div class="marksheet">
+	<h1 style="font-size: 3.5em;">MARKSHEET</h1>
+</div>
+</div>
+<div class="imp">
+    <div class="inputbox">
+       <input type="text" id="myInput" onkeyup="searchTable()" placeholder="Search here...">
+        
+    </div>
+</div>
+	<table id="myTable">
+		<thead>
+			<tr>
+                <th>S-NO</th>
+                <th>FULL NAME</th>
+                <th>DEPARTMENT</th>
+                <th>REGISTRATION-NO</th>
+                <th>MARKSHEET</th>
+            </tr>
+		</thead>
+		<tbody>
+			<tr>
+                <td>1</td>
+                <td>Shubhadip Khatua</td>
+                <td>Computer scince and technology</td>
+                <td>D212210617</td>
+                <td><a href="#" download='image' class="btn btn-primary">Download
+                        <i class="fa fa-download"></i>
+                    </a></td>
+            </tr>
+			<tr>
+                <td scope="row">2</td>
+                <td>Suraj Mondal</td>
+                <td>Computer scince and technology</td>
+                <td>D212210621</td>
+                <td><a href="#" download='image' class="btn btn-primary">Download
+                        <i class="fa fa-download"></i>
+                    </a></td>
+            </tr>
+			<tr>
+                <td scope="row">3</td>
+                <td>Sourodeep Chakaborty</td>
+                <td>Computer scince and technology</td>
+                <td>D212210622</td>
+                <td><a href="Result.pdf" download='image' class="btn btn-primary">Download
+                        <i class="fa fa-download"></i>
+                    </a></td>
+            </tr>
+			<tr>
+                <td scope="row">4</td>
+                <td scope="row">Sumanta Ghosh</td>
+                <td>Computer scince and technology</td>
+                <td>D212210XXX</td>
+                <td><a href="#" download='image' class="btn btn-primary">Download
+                        <i class="fa fa-download"></i>
+                    </a></td>
+            </tr>
+		</tbody>
+	</table>
+
+	<script>
+		function searchTable() {
+			var input, filter, table, tr, td, i, txtValue;
+			input = document.getElementById("myInput");
+			filter = input.value;
+			table = document.getElementById("myTable");
+			tr = table.getElementsByTagName("tr");
+
+			for (i = 0; i < tr.length; i++) {
+				td = tr[i].getElementsByTagName("td")[3];
+				if (td) {
+					txtValue = td.textContent || td.innerText;
+					if (txtValue.indexOf(filter) > -1) {
+						tr[i].style.display = "";
+					} else {
+						tr[i].style.display = "none";
+					}
+				}       
+			}
+		}
+	</script>
+
+</body>
+</html>
